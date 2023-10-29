@@ -10,7 +10,7 @@ class BookDetailsRepository:
         result = self.db_connection.execute_query(query, (isbn,))
 
         if not result:
-            return {"error": "Book not found"}
+            return {"error": "Book not found"}, 404
 
         book = []   #NOTE!!! When output the key values are in alphabetical order? Figure this out or maybe leave it
         for row in result:
@@ -33,7 +33,7 @@ class BookDetailsRepository:
         result = self.db_connection.execute_query(query, (author_id,))
 
         if not result:
-            return {"error": "Book list not found for author"}
+            return {"error": "Book list not found for author"}, 404
 
         return result
 
@@ -44,10 +44,10 @@ class BookDetailsRepository:
         #add query for inserting new book in db
         #!!!INVESTIGATE DB strcture for books and author: user should be able to input an author while making a book
         # SHOULD DISPLAY AUTHOR NOT AUTHOR ID??
-
-        result = self.db_connection.execute_query(query, data)
-
-        if not result:
-            return {"error": "Error adding book"}
-
-        return result
+        try:
+            self.db_connection.execute_query(query, data)
+            self.db_connection.connection.commit()  # Commit the transaction to the database!
+            return {"success": "Book added successfully"}
+        except Exception as e:
+            print(f"Error adding book: {e}")
+            return {"error": "An error occurred while trying to add the book"}, 500
