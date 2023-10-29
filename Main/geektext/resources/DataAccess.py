@@ -23,8 +23,7 @@ class DataAccess:
             cursor.close()
             return result
         except mysql.connector.Error as e:
-            print(f"Error executing query: {e}")
-            return []
+            raise Exception(f"Error executing query: {e}")
 
     def close(self):
         if self.connection.is_connected():

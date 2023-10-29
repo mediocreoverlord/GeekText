@@ -1,13 +1,10 @@
 from flask import Flask
-from Main.geektext.Test.TestRoutes import test
-
 
 
 from BookDetails.Routes import book_details
 
 app = Flask(__name__)
 
-app.register_blueprint(test)
 app.register_blueprint(book_details)
 
 
