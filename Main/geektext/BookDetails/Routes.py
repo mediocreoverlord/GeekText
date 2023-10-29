@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import request, jsonify
+from flask import request
 
 from Main.geektext.Book import Book
 from Main.geektext.BookDetails.BookDetailsRepository import BookDetailsRepository
@@ -7,23 +7,24 @@ from Main.geektext.resources.DataAccess import db_connection
 
 book_details = Blueprint('book_details', __name__, url_prefix='/book-details')
 
-
+#May reformat file in future into a class?
 @book_details.route("/books/<string:isbn>", methods=['GET', 'POST'])
 def get_book(isbn):
     repository = BookDetailsRepository(
         db_connection)  # repeated calls to this line might make the whole routes file a class and
-    # initilize this line first so reptition is eliminated
+    # initialize this line first so repetition is eliminated
 
     if request.method == 'GET':
-        return jsonify(repository.get_book_by_id(isbn))
-    else:
+        return repository.get_book_by_id(isbn)
+    ''' else:
         return jsonify({"error": "Book not found"}), 404  # possibly delete
+        '''
 
 
 @book_details.route("/authors/<string:author_id>", methods=['GET'])
 def get_books_list(author_id):
     repository = BookDetailsRepository(db_connection)
-    return jsonify(repository.get_books_list(author_id))
+    return repository.get_books_list(author_id)
 
 
 ''' Parse the data sent by the client.
