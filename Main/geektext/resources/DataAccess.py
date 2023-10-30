@@ -28,11 +28,11 @@ class DataAccess:
 
     def close(self):
         if self.connection.is_connected():
-            self.connection.clsoe()
+            self.connection.close()
             print("Database connection is closed")
 
 
-config_file = 'resources/db_config.json'
+config_file = r'C:\Users\tvazq\PycharmProjects\GeekText\Main\geektext\resources\db_config.json'
 # Create MySQLConnection instance with the loaded config_data
 # Connect to the MySQL database
 if os.path.exists(config_file):
