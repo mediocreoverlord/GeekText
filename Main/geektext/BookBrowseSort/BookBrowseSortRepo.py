@@ -1,18 +1,19 @@
-# Interacts with the mySQL database and receives the Book object and its attributes.
+# Interacts with the mySQL database and receives the Book object, genre, and copies_sold
+# Will update book prices by a discount percent
 
 
 class BookBrowseSortRepo:
     def __init__(self, db_connection):
         self.db_connection = db_connection
 
-    def get_book_by_genre(self, genre):  # alter possibly to display author name and not id
-        query = "SELECT * FROM books WHERE genre = %s" #check why this is highlighted?
+    def get_book_by_genre(self, genre):
+        query = "SELECT * FROM books WHERE genre = %s"
         result = self.db_connection.execute_query(query, (genre,))
 
         if not result:
             return {"error": "Book not found"}, 404
 
-        book = []   #NOTE!!! When output the key values are in alphabetical order? Figure this out or maybe leave it
+        book = []
         for row in result:
             book_format = {
                 "isbn": row[0],
@@ -35,7 +36,7 @@ class BookBrowseSortRepo:
         if not result:
             return {"error": "Book list not found for top sellers"}, 404
 
-        book = []  # NOTE!!! When output the key values are in alphabetical order? Figure this out or maybe leave it
+        book = []
         for row in result:
             book_format = {
                 "isbn": row[0],
