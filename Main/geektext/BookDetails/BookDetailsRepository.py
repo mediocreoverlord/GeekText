@@ -1,18 +1,19 @@
 # Interacts with the mySQL database and receives the Book object and its attributes.
+from flask import jsonify
 
 
 class BookDetailsRepository:
     def __init__(self, db_connection):
         self.db_connection = db_connection
 
-    def get_book_by_id(self, isbn):  # alter possibly to display author name and not id
+    def get_book_by_id(self, isbn):  # alter possibly to display author name and not id when author object is created
         query = "SELECT * FROM books WHERE isbn = %s" #check why this is highlighted?
         result = self.db_connection.execute_query(query, (isbn,))
 
         if not result:
             return {"error": "Book not found"}, 404
 
-        book = []   #NOTE!!! When output the key values are in alphabetical order? Figure this out or maybe leave it
+        book = []
         for row in result:
             book_format = {
                 "isbn": row[0],
@@ -26,7 +27,7 @@ class BookDetailsRepository:
                 "copies_sold": row[8],
             }
             book.append(book_format)
-        return book
+        return jsonify(book)
 
     def get_books_list(self, author_id):
         query = "SELECT * FROM books WHERE author_id = %s"
@@ -35,15 +36,13 @@ class BookDetailsRepository:
         if not result:
             return {"error": "Book list not found for author"}, 404
 
-        return result
+        return jsonify (result)
 
-    def add_book(self, new_book):
+    def add_book(self, new_book):  # add query for inserting new book in db
         query = "INSERT INTO books VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
         data = (new_book.isbn, new_book.title, new_book.description, new_book.price, new_book.author, new_book.genre,
                 new_book.publisher, new_book.year_pub, new_book.copies_sold)
-        #add query for inserting new book in db
-        #!!!INVESTIGATE DB strcture for books and author: user should be able to input an author while making a book
-        # SHOULD DISPLAY AUTHOR NOT AUTHOR ID??
+
         try:
             self.db_connection.execute_query(query, data)
             self.db_connection.connection.commit()  # Commit the transaction to the database!

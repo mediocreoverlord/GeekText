@@ -1,6 +1,6 @@
 # book class to store values passed in by client
 
-class Book:
+class Book: #This is a book object where book data can be stored and retrieved.
     def __init__(self, isbn, title, description, price, author,
                  genre, publisher, year_pub, copies_sold):
         self.isbn = isbn
