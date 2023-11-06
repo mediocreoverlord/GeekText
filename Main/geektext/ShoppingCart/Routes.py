@@ -11,13 +11,13 @@ shoppingcart = Blueprint('shoppingcart', __name__, url_prefix='/shoppingcart')
 
 @shoppingcart.route('/calculate_subtotal', methods=['GET'])
 def calculate_subtotal():
-    user_id = request.args.get('user_id')  # Get the user_id from the request query parameters
+    user_id = request.json.get('user_id')  # Get the user_id from the request query parameters
     subtotal = repository.get_subtotal(user_id)  # Use the repository to get the subtotal
     return jsonify({"subtotal": subtotal})  # Return the subtotal as JSON
 
 @shoppingcart.route('/add_to_cart', methods=['POST'])
 def add_to_cart():
-    user_id = request.args.get('user_id')
+    user_id = request.json.get('user_id')
     isbn = request.json.get('isbn')  # Assuming the ISBN is sent in the request body as JSON
     repository.add_item_to_cart(isbn, user_id)
     return "Item added to the cart", 201  # HTTP 201 for resource created
