@@ -5,7 +5,7 @@ from ShoppingCart.Routes import shoppingcart
 
 app = Flask(__name__)
 
-
+app.json.sort_keys = False #stops alphabetical sorting
 app.register_blueprint(book_details)
 app.register_blueprint(shoppingcart)
 
