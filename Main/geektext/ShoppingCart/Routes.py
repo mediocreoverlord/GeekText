@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 from flask import Blueprint
 from Main.geektext.ShoppingCart.ShoppingCartRepository import ShoppingCartRepository
-from Main.geektext.BookDetails.BookDetailsRepository import BookDetailsRepository
 from Main.geektext.resources.DataAccess import db_connection
 
 
 repository = ShoppingCartRepository(db_connection)
-bookdetails = BookDetailsRepository(db_connection)
+
 shoppingcart = Blueprint('shoppingcart', __name__, url_prefix='/shoppingcart')
 
 @shoppingcart.route('/calculate_subtotal', methods=['GET'])
