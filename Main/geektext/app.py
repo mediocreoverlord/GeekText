@@ -1,11 +1,11 @@
 from flask import Flask
 
 
-from BookDetails.Routes import book_details
+from BookBrowseSort.Routes import book_browse_sort
 
 app = Flask(__name__)
 
-app.register_blueprint(book_details)
+app.register_blueprint(book_browse_sort)
 
 
 # Placeholder code for default starter link
