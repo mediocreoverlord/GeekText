@@ -27,7 +27,7 @@ class DataAccess:
 
     def close(self):
         if self.connection.is_connected():
-            self.connection.clsoe()
+            self.connection.close()
             print("Database connection is closed")
 
 

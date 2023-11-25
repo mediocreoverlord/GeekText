@@ -48,9 +48,9 @@ class BookBrowseSortRepo:
             book.append(book_format)
         return book
 
-    def discount_books_by_publisher(self, publisher, discount_percent):
-        query = "UPDATE books SET price = price - (price * %s / 100) WHERE publisher = %s"
-        self.db_connection.execute_update(query, (discount_percent, publisher))
+    def discount_books_by_publisher(self, pub, discount_percent):
+        query = "UPDATE books SET price = price - (price * %s / 100) WHERE pub = %s"
+        self.db_connection.execute_query(query, (discount_percent, pub))
 
     def get_books_by_rating(self, rating):
         query = """

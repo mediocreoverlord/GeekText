@@ -25,7 +25,7 @@ def get_books_top_sellers():
     repository = BookBrowseSortRepo(db_connection)
 
     if request.method == 'GET':
-        return jsonify(repository.get_books_top_sellers())
+        return jsonify(repository.get_books_top_sellers(copies_sold=3))
     else:
         return jsonify({"error": "Invalid request method"}), 400
 
