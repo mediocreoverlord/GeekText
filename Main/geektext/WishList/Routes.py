@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
+
 from Main.geektext.WishList.WishListRepository import WishListRepository
+from .WishListRepository import WishListRepository
 from Main.geektext.resources.DataAccess import db_connection
 
 Wishlist = Blueprint('Wishlist', __name__, url_prefix='/Wishlist')

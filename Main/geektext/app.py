@@ -1,14 +1,16 @@
 from flask import Flask
-from Main.geektext.Test.TestRoutes import test
 
 
-
+from BookBrowseSort.Routes import book_browse_sort
 from BookDetails.Routes import book_details
+from ShoppingCart.Routes import shoppingcart
 
 app = Flask(__name__)
 
-app.register_blueprint(test)
+app.json.sort_keys = False #stops alphabetical sorting
 app.register_blueprint(book_details)
+app.register_blueprint(shoppingcart)
+app.register_blueprint(book_browse_sort)
 
 
 # Placeholder code for default starter link
