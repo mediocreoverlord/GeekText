@@ -1,5 +1,5 @@
 # GeekText
-An REST API Service to support an online web application bookstore that targets a particular niche in technology. This is a team project made for FIU Software Engineering I (CEN4010) class of Fall 2023. Each developer was tasked to complete a feature for the REST API through the Flask architecture while working in a Scrum based development structure. *UI was not required*
+An REST API Service to support an online web application bookstore that targets a particular niche in technology. This is a team project made for FIU Software Engineering I (CEN4010) class of Fall 2023. Each developer was tasked to complete a feature for the REST API through the Flask architecture while working in a Scrum based development structure. *UI was not required but expected in future updates!*
 
 ## Set Up
   - Recommended Tools: MySQl | Postman
