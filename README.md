@@ -9,15 +9,15 @@ An REST API Service to support an online web application bookstore that targets 
 
 ## Breakdown
   - The REST API's features are assigned as follows:
-  - Book Browsing and Sorting: @gvazq052
+  - Book Browsing and Sorting:
       - Users will have a simple and enjoyable way to discover new books and Authors and sort results.
-  - Book Details: @mediocreoverlord
+  - Book Details:
       - Users can see informative and enticing details about a book
   - Profile Management: @arianaaurribarri
       - Users can create and maintain their profiles rather than enter in their information each time they order
-  - Shopping Cart: @inkdmontana
+  - Shopping Cart:
       - Users can manage items in a shopping cart for immediate or future purchase
-  - Book Rating and Commenting: @AsianTRU32
+  - Book Rating and Commenting:
       - Users can rate AND comment on books they’ve purchased to help others in their selection
   - Wish List Management: @JesusVa29
       - Users can create and have 3 different wish lists which can have books moved to from the primary list.
